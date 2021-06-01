@@ -24,14 +24,13 @@ enum custom_keycodes {
 #define KC_NAVEN    LT(_NAV, KC_ENT)
 
 #define K_SPC_SF    MT(MOD_LSFT, KC_SPC)
-#define K_BSP_SF    MT(MOD_LSFT, KC_BSPC)
 
 #define HOME_S     MT(MOD_LGUI, KC_S)
 #define HOME_D     MT(MOD_LALT, KC_D)
 #define HOME_F     MT(MOD_LCTL, KC_F)
 
 #define HOME_J     MT(MOD_RCTL, KC_J)
-#define HOME_K     MT(MOD_RALT, KC_K)
+#define HOME_K     MT(MOD_LALT, KC_K)
 #define HOME_L     MT(MOD_RGUI, KC_L)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -58,9 +57,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_GRV  ,KC_LGUI ,KC_LALT ,KC_LCTL ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,KC_LCTL ,KC_RALT ,KC_LGUI ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,KC_LBRC ,KC_RBRC ,XXXXXXX ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_MINS ,KC_EQL  ,KC_QUOT ,XXXXXXX ,KC_BSLS ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,KC_LBRC ,KC_RBRC ,KC_BSPC ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_MINS ,KC_EQL  ,KC_QUOT ,XXXXXXX ,KC_BSLS ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     XXXXXXX ,    KC_TAB  ,K_BSP_SF,        _______ ,XXXXXXX ,    XXXXXXX ,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     XXXXXXX ,    KC_TAB  ,KC_LSFT ,        _______ ,XXXXXXX ,    XXXXXXX ,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   ),
 
