@@ -24,13 +24,19 @@ enum custom_keycodes {
 
 #define K_SPC_SF    MT(MOD_LSFT, KC_SPC)
 
-#define HOME_X     MT(MOD_LGUI, KC_X)
-#define HOME_C     MT(MOD_LALT, KC_C)
-#define HOME_V     MT(MOD_LCTL, KC_V)
+#define HOME_X      MT(MOD_LGUI, KC_X)
+#define HOME_C      MT(MOD_LALT, KC_C)
+#define HOME_V      MT(MOD_LCTL, KC_V)
 
-#define HOME_M     MT(MOD_RCTL, KC_M)
-#define HOME_COM   MT(MOD_LALT, KC_COMM)
-#define HOME_DOT   MT(MOD_RGUI, KC_DOT)
+#define HOME_M      MT(MOD_RCTL, KC_M)
+#define HOME_COM    MT(MOD_LALT, KC_COMM)
+#define HOME_DOT    MT(MOD_RGUI, KC_DOT)
+
+#define KGUI_W       LGUI(KC_W)
+#define KGUI_R       LGUI(KC_R)
+#define KGUI_T       LGUI(KC_T)
+#define KGUI_C       LGUI(KC_C)
+#define KGUI_V       LGUI(KC_V)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -54,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,XXXXXXX ,                          XXXXXXX ,KC_6    ,KC_7    ,KC_8    ,KC_9    ,KC_0    ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,KC_GRV  ,XXXXXXX ,KC_LBRC ,KC_RBRC ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,KC_MINS ,KC_EQL  ,KC_QUOT ,XXXXXXX ,KC_BSLS,XXXXXXX ,
+     XXXXXXX ,KC_GRV  ,XXXXXXX ,KC_LBRC ,KC_RBRC ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,KC_MINS ,KC_EQL  ,KC_QUOT ,XXXXXXX ,KC_BSLS ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_TILDE,XXXXXXX ,KC_LCBR ,KC_RCBR ,XXXXXXX ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_UNDS ,KC_PLUS ,KC_DQT  ,XXXXXXX ,KC_PIPE ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
@@ -66,11 +72,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
      XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                                            XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,KC_EXLM ,KC_AT   ,KC_HASH ,KC_DLR  ,KC_PERC ,XXXXXXX ,                          XXXXXXX ,KC_CIRC ,KC_AMPR ,KC_ASTR ,KC_LPRN ,KC_RPRN ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,KGUI_W  ,KC_ESC  ,KGUI_R  ,KGUI_T  ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX,XXXXXXX ,
+     XXXXXXX ,KC_EXLM ,KC_AT   ,KC_HASH ,KC_DLR  ,KC_PERC ,XXXXXXX ,                          XXXXXXX ,KC_CIRC ,KC_AMPR ,KC_ASTR ,KC_LPRN ,KC_RPRN ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,KC_DELT ,KGUI_C  ,KGUI_V  ,KC_BSPC ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     XXXXXXX ,    XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,    XXXXXXX ,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
