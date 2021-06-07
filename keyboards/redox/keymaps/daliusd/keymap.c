@@ -100,3 +100,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   )
 };
+
+bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case K_SPC_SF:
+        case KC_QUITA:
+        case KC_NAVEN:
+        case KC_SYMES:
+            return true;
+        default:
+            return false;
+    }
+}
