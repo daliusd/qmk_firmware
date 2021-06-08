@@ -20,7 +20,7 @@ enum custom_keycodes {
 
 #define KC_QUITA    LT(_QUICK, KC_TAB)
 #define KC_NAVEN    LT(_NAV, KC_ENT)
-#define KC_SYMES    LT(_SYMB, KC_ESC)
+#define KC_SYMB     MO(_SYMB)
 
 #define K_SPC_SF    MT(MOD_LSFT, KC_SPC)
 
@@ -28,9 +28,9 @@ enum custom_keycodes {
 #define HOME_D      MT(MOD_LALT, KC_D)
 #define HOME_F      MT(MOD_LCTL, KC_F)
 
-#define HOME_J      MT(MOD_RCTL, KC_J)
+#define HOME_J      MT(MOD_LCTL, KC_J)
 #define HOME_K      MT(MOD_LALT, KC_K)
-#define HOME_L      MT(MOD_RGUI, KC_L)
+#define HOME_L      MT(MOD_LGUI, KC_L)
 
 #define KGUI_Q      LGUI(KC_Q)
 #define KGUI_W      LGUI(KC_W)
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     KC_QUITA,    K_SPC_SF,XXXXXXX ,        XXXXXXX ,KC_NAVEN,    KC_SYMES,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     KC_QUITA,    K_SPC_SF,XXXXXXX ,        XXXXXXX ,KC_NAVEN,    KC_SYMB ,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   ),
 
@@ -106,7 +106,6 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case K_SPC_SF:
         case KC_QUITA:
         case KC_NAVEN:
-        case KC_SYMES:
             return true;
         default:
             return false;
