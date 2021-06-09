@@ -111,3 +111,17 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
 }
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case HOME_S:
+        case HOME_D:
+        case HOME_F:
+        case HOME_J:
+        case HOME_K:
+        case HOME_L:
+            return 300;
+        default:
+            return TAPPING_TERM;
+    }
+}
