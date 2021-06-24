@@ -43,6 +43,67 @@ enum ferris_tap_dances {
 
 #define KC_SC_ES    TD(TD_SC_ESC)
 
+enum unicode_names {
+    SNEK,
+    LT_S_A,
+    LT_L_A,
+    LT_S_C,
+    LT_L_C,
+    LT_S_E1,
+    LT_L_E1,
+    LT_S_E2,
+    LT_L_E2,
+    LT_S_I,
+    LT_L_I,
+    LT_S_S,
+    LT_L_S,
+    LT_S_U1,
+    LT_L_U1,
+    LT_S_U2,
+    LT_L_U2,
+    LT_S_Z,
+    LT_L_Z,
+    LT_OB,
+    LT_CB,
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [SNEK]  = 0x1F40D, // 🐍
+    [LT_S_A] = 0x105, // ą
+    [LT_L_A] = 0x104, // Ą
+    [LT_S_C] = 0x10d, // č
+    [LT_L_C] = 0x10c, // Č
+    [LT_S_E1] = 0x119, // ę
+    [LT_L_E1] = 0x118, // Ę
+    [LT_S_E2] = 0x117, // ė
+    [LT_L_E2] = 0x116, // Ė
+    [LT_S_I] = 0x12f, // į
+    [LT_L_I] = 0x12e, // Į
+    [LT_S_S] = 0x161, // š
+    [LT_L_S] = 0x160, // Š'
+    [LT_S_U1] = 0x173, // ų
+    [LT_L_U1] = 0x172, // Ų
+    [LT_S_U2] = 0x16b, // ū
+    [LT_L_U2] = 0x16a, // Ū
+    [LT_S_Z] = 0x17e, // ž
+    [LT_L_Z] = 0x17d, // Ž
+    [LT_OB] = 0x201e, // „
+    [LT_CB] = 0x201c, // “
+};
+
+#define K_SNEK      X(SNEK)
+#define K_LT_A      XP(LT_S_A, LT_L_A)
+#define K_LT_C      XP(LT_S_C, LT_L_C)
+#define K_LT_E1     XP(LT_S_E1, LT_L_E1)
+#define K_LT_E2     XP(LT_S_E2, LT_L_E2)
+#define K_LT_I      XP(LT_S_I, LT_L_I)
+#define K_LT_S      XP(LT_S_S, LT_L_S)
+#define K_LT_U1     XP(LT_S_U1, LT_L_U1)
+#define K_LT_U2     XP(LT_S_U2, LT_L_U2)
+#define K_LT_Z      XP(LT_S_Z, LT_L_Z)
+#define K_LT_OB     X(LT_OB)
+#define K_LT_CB     X(LT_CB)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
@@ -65,9 +126,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,XXXXXXX ,                          XXXXXXX ,KC_6    ,KC_7    ,KC_8    ,KC_9    ,KC_0    ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,KC_GRV  ,XXXXXXX ,KC_LBRC ,KC_RBRC ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,KC_MINS ,KC_EQL  ,KC_QUOT ,XXXXXXX ,KC_BSLS ,XXXXXXX ,
+     XXXXXXX ,KC_GRV  ,K_SNEK  ,KC_LBRC ,KC_RBRC ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,KC_MINS ,KC_EQL  ,KC_QUOT ,K_LT_OB ,KC_BSLS ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,KC_TILDE,XXXXXXX ,KC_LCBR ,KC_RCBR ,XXXXXXX ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_UNDS ,KC_PLUS ,KC_DQT  ,XXXXXXX ,KC_PIPE ,XXXXXXX ,
+     XXXXXXX ,KC_TILDE,XXXXXXX ,KC_LCBR ,KC_RCBR ,XXXXXXX ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_UNDS ,KC_PLUS ,KC_DQT  ,K_LT_CB ,KC_PIPE ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     XXXXXXX ,    _______ ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,    XXXXXXX ,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
@@ -77,13 +138,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
      XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                                            XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,KGUI_W  ,XXXXXXX ,XXXXXXX ,KGUI_TLD,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,KGUI_W  ,XXXXXXX ,XXXXXXX ,KGUI_TLD,XXXXXXX ,                          XXXXXXX ,K_LT_A  ,K_LT_C  ,K_LT_E1 ,K_LT_E2 ,K_LT_I  ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_EXLM ,KC_AT   ,KC_HASH ,KC_DLR  ,KC_PERC ,XXXXXXX ,                          XXXXXXX ,KC_CIRC ,KC_AMPR ,KC_ASTR ,KC_LPRN ,KC_RPRN ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,KC_ENT  ,KC_DELT ,XXXXXXX ,XXXXXXX ,KC_BSPC ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,KC_ENT  ,KC_DELT ,XXXXXXX ,XXXXXXX ,KC_BSPC ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,K_LT_S  ,K_LT_U1 ,K_LT_U2 ,K_LT_Z  ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     XXXXXXX ,    XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,    KC_BSPC ,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     XXXXXXX ,    XXXXXXX ,XXXXXXX ,        XXXXXXX ,KC_LSFT ,    KC_BSPC ,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   ),
 
@@ -95,7 +156,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,XXXXXXX ,KC_MS_L ,KC_MS_D ,KC_MS_R ,KC_WH_D ,XXXXXXX ,                          XXXXXXX ,KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RIGHT,KC_MPLY ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,RGB_M_P ,RGB_TOG ,RGB_MOD ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_BRID ,KC_BRIU ,KC_VOLD ,KC_VOLU ,KC_MNXT ,XXXXXXX ,
+     XXXXXXX ,RGB_M_P ,RGB_TOG ,RGB_MOD ,XXXXXXX ,UC_MOD  ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_BRID ,KC_BRIU ,KC_VOLD ,KC_VOLU ,KC_MNXT ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     KC_BTN1 ,    KC_BTN2 ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,    XXXXXXX ,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
