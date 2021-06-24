@@ -16,6 +16,10 @@ enum custom_keycodes {
   NAV,
 };
 
+enum ferris_tap_dances {
+  TD_SC_ESC
+};
+
 // Shortcut to make keymap more readable
 
 #define KC_QUITA    LT(_QUICK, KC_TAB)
@@ -37,6 +41,7 @@ enum custom_keycodes {
 
 #define K_PRINT     (QK_LCTL | QK_LSFT | QK_LGUI | KC_4)
 
+#define KC_SC_ES    TD(TD_SC_ESC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -46,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_Q    ,KC_W    ,KC_E    ,KC_R    ,KC_T    ,XXXXXXX ,                          XXXXXXX ,KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P    ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,KC_A    ,HOME_S  ,HOME_D  ,HOME_F  ,KC_G    ,XXXXXXX ,                          XXXXXXX ,KC_H    ,HOME_J  ,HOME_K  ,HOME_L  ,KC_SCLN ,XXXXXXX ,
+     XXXXXXX ,KC_A    ,HOME_S  ,HOME_D  ,HOME_F  ,KC_G    ,XXXXXXX ,                          XXXXXXX ,KC_H    ,HOME_J  ,HOME_K  ,HOME_L  ,KC_SC_ES,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
@@ -72,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
      XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                                            XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,KGUI_W  ,KC_ESC  ,XXXXXXX ,KGUI_TLD,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,KGUI_W  ,XXXXXXX ,XXXXXXX ,KGUI_TLD,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_EXLM ,KC_AT   ,KC_HASH ,KC_DLR  ,KC_PERC ,XXXXXXX ,                          XXXXXXX ,KC_CIRC ,KC_AMPR ,KC_ASTR ,KC_LPRN ,KC_RPRN ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -109,16 +114,8 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case HOME_S:
-        case HOME_D:
-        case HOME_F:
-        case HOME_J:
-        case HOME_K:
-        case HOME_L:
-            return 250;
-        default:
-            return TAPPING_TERM;
-    }
-}
+// Tap Dance Definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Q, twice for ESC
+    [TD_SC_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_ESC)
+};
