@@ -213,6 +213,7 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case K_SPC_SF:
         case KC_QUITA:
         case KC_NAVEN:
+        case KC_SYMBS:
             return true;
         default:
             return false;
