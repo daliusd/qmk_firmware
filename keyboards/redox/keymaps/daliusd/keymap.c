@@ -49,6 +49,7 @@ enum ferris_tap_dances {
 
 enum unicode_names {
     SNEK,
+    EURO,
     LT_S_A,
     LT_L_A,
     LT_S_C,
@@ -73,6 +74,7 @@ enum unicode_names {
 
 const uint32_t PROGMEM unicode_map[] = {
     [SNEK]  = 0x1F40D, // 🐍
+    [EURO]  = 0x20ac, // €
     [LT_S_A] = 0x105, // ą
     [LT_L_A] = 0x104, // Ą
     [LT_S_C] = 0x10d, // č
@@ -96,6 +98,7 @@ const uint32_t PROGMEM unicode_map[] = {
 };
 
 #define K_SNEK      X(SNEK)
+#define K_EURO      X(EURO)
 #define K_LT_A      XP(LT_S_A, LT_L_A)
 #define K_LT_C      XP(LT_S_C, LT_L_C)
 #define K_LT_E1     XP(LT_S_E1, LT_L_E1)
@@ -132,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_GRV  ,K_SNEK  ,KC_LBRC ,KC_RBRC ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,KC_MINS ,KC_EQL  ,KC_QUOT ,K_LT_OB ,KC_BSLS ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,KC_TILDE,XXXXXXX ,KC_LCBR ,KC_RCBR ,XXXXXXX ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_UNDS ,KC_PLUS ,KC_DQT  ,K_LT_CB ,KC_PIPE ,XXXXXXX ,
+     XXXXXXX ,KC_TILDE,K_EURO  ,KC_LCBR ,KC_RCBR ,XXXXXXX ,XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,KC_UNDS ,KC_PLUS ,KC_DQT  ,K_LT_CB ,KC_PIPE ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     XXXXXXX ,    _______ ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,    XXXXXXX ,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
