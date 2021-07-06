@@ -201,18 +201,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case K_SPC_SF:
-        case KC_QUITA:
-        case KC_NAVEN:
-        case KC_SYMBS:
-            return true;
-        default:
-            return false;
-    }
-}
-
 // Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Q, twice for ESC
