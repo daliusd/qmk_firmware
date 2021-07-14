@@ -9,6 +9,7 @@
 #define _QUICK 2
 #define _NAV 3
 #define _TMUX 4
+#define _LTK 5
 
 enum custom_keycodes {
   TM_NEXT = SAFE_RANGE,
@@ -17,10 +18,11 @@ enum custom_keycodes {
   TM_RIGHT,
   TM_NEW,
   TM_SLCT,
+  TM_SRCH,
 };
 
 enum ferris_tap_dances {
-  TD_SC_ESC
+  TD_Q_ESC
 };
 
 // Shortcut to make keymap more readable
@@ -29,7 +31,8 @@ enum ferris_tap_dances {
 #define KC_NAVEN    LT(_NAV, KC_ENT)
 #define KC_SYMBS    LT(_SYMB, KC_BSPC)
 #define KC_TMUXT    LT(_TMUX, KC_T)
-
+#define KC_LT_B     LT(_LTK, KC_B)
+#define KC_LT_N     LT(_LTK, KC_N)
 #define K_SPC_SF    MT(MOD_LSFT, KC_SPC)
 
 #define HOME_S      MT(MOD_LGUI, KC_S)
@@ -44,8 +47,6 @@ enum ferris_tap_dances {
 #define KGUI_TLD    LGUI(KC_TILDE)
 
 #define K_PRINT     (QK_LCTL | QK_LSFT | QK_LGUI | KC_4)
-
-#define KC_SC_ES    TD(TD_SC_ESC)
 
 enum unicode_names {
     SNEK,
@@ -117,9 +118,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
      KC_Q    ,KC_W    ,KC_E    ,KC_R    ,KC_TMUXT,                          KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P    ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_A    ,HOME_S  ,HOME_D  ,HOME_F  ,KC_G    ,                          KC_H    ,HOME_J  ,HOME_K  ,HOME_L  ,KC_SC_ES,
+     KC_A    ,HOME_S  ,HOME_D  ,HOME_F  ,KC_G    ,                          KC_H    ,HOME_J  ,HOME_K  ,HOME_L  ,KC_SCLN ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,                          KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,
+     KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_LT_B ,                          KC_LT_N ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      KC_QUITA,    K_SPC_SF,        KC_NAVEN,    KC_SYMBS
   //                                └────────┘   └────────┘       └────────┘   └────────┘
@@ -133,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_TILDE,K_EURO  ,KC_LCBR ,KC_RCBR ,XXXXXXX ,                          KC_UNDS ,KC_PLUS ,KC_DQT  ,K_LT_CB ,KC_PIPE ,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                     XXXXXXX ,    _______ ,        XXXXXXX ,    XXXXXXX
+                                     KC_TAB  ,    KC_SPC  ,        XXXXXXX ,    XXXXXXX
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   ),
 
@@ -143,9 +144,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_EXLM ,KC_AT   ,KC_HASH ,KC_DLR  ,KC_PERC ,                          KC_CIRC ,KC_AMPR ,KC_ASTR ,KC_LPRN ,KC_RPRN ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_ENT  ,KC_DELT ,XXXXXXX ,XXXXXXX ,KC_BSPC ,                          K_LT_S  ,K_LT_U1 ,K_LT_U2 ,K_LT_Z  ,XXXXXXX ,
+     KC_ENT  ,KC_DELT ,KC_ESC  ,XXXXXXX ,KC_BSPC ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                     XXXXXXX ,    XXXXXXX ,        KC_LSFT ,    KC_BSPC
+                                     XXXXXXX ,    XXXXXXX ,        KC_ENT  ,    KC_BSPC
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   ),
 
@@ -167,9 +168,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          TM_LEFT ,TM_NEXT ,TM_PREV ,TM_RIGHT,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          TM_NEW  ,TM_SLCT ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          TM_NEW  ,TM_SLCT ,XXXXXXX ,XXXXXXX ,TM_SRCH ,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      XXXXXXX ,    XXXXXXX ,        XXXXXXX ,    XXXXXXX
+  //                                └────────┘   └────────┘       └────────┘   └────────┘
+  ),
+
+  [_LTK] = LAYOUT(
+  //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+  //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
+     K_LT_A  ,K_LT_C  ,K_LT_E1 ,K_LT_E2 ,K_LT_I  ,                          K_LT_S  ,K_LT_U1 ,K_LT_U2 ,K_LT_Z  ,XXXXXXX ,
+  //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+  //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
+                                     XXXXXXX ,    KC_LSFT ,        XXXXXXX ,    XXXXXXX
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   )
 };
@@ -197,12 +210,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TM_SLCT:
             SEND_STRING(TMUX_PREFIX "[");
             return false;
+        case TM_SRCH:
+            SEND_STRING(TMUX_PREFIX SS_DOWN(X_TAB) SS_UP(X_TAB));
+            return false;
     }
     return true;
 }
-
-// Tap Dance Definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for Q, twice for ESC
-    [TD_SC_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_ESC)
-};
