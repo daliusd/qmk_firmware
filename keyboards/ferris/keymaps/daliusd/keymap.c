@@ -35,13 +35,13 @@ enum ferris_tap_dances {
 #define KC_LT_N     LT(_LTK, KC_N)
 #define K_SPC_SF    MT(MOD_LSFT, KC_SPC)
 
-#define HOME_S      MT(MOD_LGUI, KC_S)
-#define HOME_D      MT(MOD_LALT, KC_D)
-#define HOME_F      MT(MOD_LCTL, KC_F)
+#define HOME_Q      MT(MOD_LCTL, KC_Q)
+#define HOME_A      MT(MOD_LGUI, KC_A)
+#define HOME_Z      MT(MOD_LALT, KC_Z)
 
-#define HOME_J      MT(MOD_LCTL, KC_J)
-#define HOME_K      MT(MOD_LALT, KC_K)
-#define HOME_L      MT(MOD_LGUI, KC_L)
+#define HOME_P      MT(MOD_LCTL, KC_P)
+#define HOME_SCL    MT(MOD_LGUI, KC_SCLN)
+#define HOME_SLS    MT(MOD_LALT, KC_SLSH)
 
 #define KGUI_W      LGUI(KC_W)
 #define KGUI_TLD    LGUI(KC_TILDE)
@@ -116,11 +116,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-     KC_Q    ,KC_W    ,KC_E    ,KC_R    ,KC_TMUXT,                          KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P    ,
+     HOME_Q  ,KC_W    ,KC_E    ,KC_R    ,KC_TMUXT,                          KC_Y    ,KC_U    ,KC_I    ,KC_O    ,HOME_P  ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_A    ,HOME_S  ,HOME_D  ,HOME_F  ,KC_G    ,                          KC_H    ,HOME_J  ,HOME_K  ,HOME_L  ,KC_SCLN ,
+     HOME_A  ,KC_S    ,KC_D    ,KC_F    ,KC_G    ,                          KC_H    ,KC_J    ,KC_K    ,KC_L    ,HOME_SCL,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_LT_B ,                          KC_LT_N ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,
+     HOME_Z  ,KC_X    ,KC_C    ,KC_V    ,KC_LT_B ,                          KC_LT_N ,KC_M    ,KC_COMM ,KC_DOT  ,HOME_SLS,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      KC_QUITA,    K_SPC_SF,        KC_NAVEN,    KC_SYMBS
   //                                └────────┘   └────────┘       └────────┘   └────────┘
