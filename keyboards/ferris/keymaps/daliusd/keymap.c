@@ -36,16 +36,18 @@ enum ferris_tap_dances {
 #define KC_LT_N     LT(_LTK, KC_N)
 #define K_SPC_SF    MT(MOD_LSFT, KC_SPC)
 
-#define HOME_Q      MT(MOD_LCTL, KC_Q)
-#define HOME_A      MT(MOD_LGUI, KC_A)
-#define HOME_Z      MT(MOD_LALT, KC_Z)
+#define HOME_W      MT(MOD_LALT, KC_W)
+#define HOME_E      MT(MOD_LCTL, KC_E)
+#define HOME_R      MT(MOD_LGUI, KC_R)
 
-#define HOME_P      MT(MOD_LCTL, KC_P)
-#define HOME_SCL    MT(MOD_LGUI, KC_SCLN)
-#define HOME_SLS    MT(MOD_LALT, KC_SLSH)
+#define HOME_O      MT(MOD_LALT, KC_O)
+#define HOME_I      MT(MOD_LCTL, KC_I)
+#define HOME_U      MT(MOD_LGUI, KC_U)
 
-#define KGUI_W      LGUI(KC_W)
-#define KGUI_Q      LGUI(KC_Q)
+#define KGUI_R      LGUI(KC_R)
+#define KGUI_C      LGUI(KC_C)
+#define KGUI_V      LGUI(KC_V)
+#define KGUI_T      LGUI(KC_T)
 #define KGUI_TLD    LGUI(KC_TILDE)
 
 #define K_PRINT     (QK_LCTL | QK_LSFT | QK_LGUI | KC_4)
@@ -118,11 +120,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-     HOME_Q  ,KC_W    ,KC_E    ,KC_R    ,KC_TMUXT,                          KC_Y    ,KC_U    ,KC_I    ,KC_O    ,HOME_P  ,
+     KC_Q    ,HOME_W  ,HOME_E  ,HOME_R  ,KC_TMUXT,                          KC_Y    ,HOME_U  ,HOME_I  ,HOME_O  ,KC_P    ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     HOME_A  ,KC_S    ,KC_D    ,KC_F    ,KC_G    ,                          KC_H    ,KC_J    ,KC_K    ,KC_L    ,HOME_SCL,
+     KC_A    ,KC_S    ,KC_D    ,KC_F    ,KC_G    ,                          KC_H    ,KC_J    ,KC_K    ,KC_L    ,KC_ESC  ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     HOME_Z  ,KC_X    ,KC_C    ,KC_V    ,KC_LT_B ,                          KC_LT_N ,KC_M    ,KC_COMM ,KC_DOT  ,HOME_SLS,
+     KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_LT_B ,                          KC_LT_N ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      KC_QUITA,    K_SPC_SF,        KC_NAVEN,    KC_SYMBS
   //                                └────────┘   └────────┘       └────────┘   └────────┘
@@ -132,9 +134,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
      KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,                          KC_6    ,KC_7    ,KC_8    ,KC_9    ,KC_0    ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_GRV  ,K_SNEK  ,KC_LBRC ,KC_RBRC ,XXXXXXX ,                          KC_MINS ,KC_EQL  ,KC_QUOT ,K_LT_OB ,KC_BSLS ,
+     KC_GRV  ,K_SNEK  ,KC_LBRC ,KC_RBRC ,KC_SCLN ,                          KC_MINS ,KC_PLUS ,KC_QUOT ,K_LT_OB ,KC_PIPE ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_TILDE,K_EURO  ,KC_LCBR ,KC_RCBR ,XXXXXXX ,                          KC_UNDS ,KC_PLUS ,KC_DQT  ,K_LT_CB ,KC_PIPE ,
+     KC_TILDE,K_EURO  ,KC_LCBR ,KC_RCBR ,KC_COLN ,                          KC_UNDS ,KC_EQL  ,KC_DQT  ,K_LT_CB ,KC_BSLS ,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      KC_TAB  ,    KC_SPC  ,        XXXXXXX ,    XXXXXXX
   //                                └────────┘   └────────┘       └────────┘   └────────┘
@@ -142,11 +144,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QUICK] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-     KGUI_Q  ,KGUI_W  ,XXXXXXX ,XXXXXXX ,KGUI_TLD,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     KGUI_TLD,XXXXXXX ,XXXXXXX ,KGUI_R  ,KGUI_T  ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_EXLM ,KC_AT   ,KC_HASH ,KC_DLR  ,KC_PERC ,                          KC_CIRC ,KC_AMPR ,KC_ASTR ,KC_LPRN ,KC_RPRN ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_ENT  ,KC_DELT ,KC_ESC  ,XXXXXXX ,KC_BSPC ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     KC_ENT  ,KC_DELT ,KGUI_C  ,KGUI_V  ,KC_BSPC ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      XXXXXXX ,    XXXXXXX ,        KC_ENT  ,    KC_BSPC
   //                                └────────┘   └────────┘       └────────┘   └────────┘
