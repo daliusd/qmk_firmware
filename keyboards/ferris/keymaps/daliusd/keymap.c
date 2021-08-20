@@ -6,7 +6,7 @@
 // entirely and just use numbers.
 #define _QWERTY 0
 #define _SYMB 1
-#define _QUICK 2
+#define _NUMBER 2
 #define _NAV 3
 #define _TMUX 4
 #define _LTK 5
@@ -20,35 +20,27 @@ enum custom_keycodes {
   TM_SLCT,
   TM_SRCH,
   TM_URL,
-};
-
-enum ferris_tap_dances {
-  TD_Q_ESC
+  SFTTAB,
 };
 
 // Shortcut to make keymap more readable
 
-#define KC_QUITA    LT(_QUICK, KC_TAB)
 #define KC_NAVEN    LT(_NAV, KC_ENT)
-#define KC_SYMBS    LT(_SYMB, KC_BSPC)
+#define KC_SYM      MO(_SYMB)
+
 #define KC_TMUXT    LT(_TMUX, KC_T)
-#define KC_LT_B     LT(_LTK, KC_B)
+#define KC_NO_B     LT(_NUMBER, KC_B)
 #define KC_LT_N     LT(_LTK, KC_N)
-#define K_SPC_SF    MT(MOD_LSFT, KC_SPC)
 
-#define HOME_W      MT(MOD_LALT, KC_W)
-#define HOME_E      MT(MOD_LCTL, KC_E)
-#define HOME_R      MT(MOD_LGUI, KC_R)
+#define HOME_A      MT(MOD_LSFT, KC_A)
+#define HOME_S      MT(MOD_LGUI, KC_S)
+#define HOME_D      MT(MOD_LCTL, KC_D)
+#define HOME_F      MT(MOD_LALT, KC_F)
 
-#define HOME_O      MT(MOD_LALT, KC_O)
-#define HOME_I      MT(MOD_LCTL, KC_I)
-#define HOME_U      MT(MOD_LGUI, KC_U)
-
-#define KGUI_R      LGUI(KC_R)
-#define KGUI_C      LGUI(KC_C)
-#define KGUI_V      LGUI(KC_V)
-#define KGUI_T      LGUI(KC_T)
-#define KGUI_TLD    LGUI(KC_TILDE)
+#define HOME_J      MT(MOD_LALT, KC_J)
+#define HOME_K      MT(MOD_LCTL, KC_K)
+#define HOME_L      MT(MOD_LGUI, KC_L)
+#define HOME_A      MT(MOD_LSFT, KC_A)
 
 #define K_PRINT     (QK_LCTL | QK_LSFT | QK_LGUI | KC_4)
 
@@ -120,37 +112,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-     KC_Q    ,HOME_W  ,HOME_E  ,HOME_R  ,KC_TMUXT,                          KC_Y    ,HOME_U  ,HOME_I  ,HOME_O  ,KC_P    ,
+     KC_Q    ,KC_W    ,KC_E    ,KC_R    ,KC_TMUXT,                          KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P    ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_A    ,KC_S    ,KC_D    ,KC_F    ,KC_G    ,                          KC_H    ,KC_J    ,KC_K    ,KC_L    ,KC_ESC  ,
+     KC_A    ,HOME_S  ,HOME_D  ,HOME_F  ,KC_G    ,                          KC_H    ,HOME_J  ,HOME_K  ,HOME_L  ,KC_ESC  ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_LT_B ,                          KC_LT_N ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH,
+     KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_NO_B ,                          KC_LT_N ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                     KC_QUITA,    K_SPC_SF,        KC_NAVEN,    KC_SYMBS
+                                     SFTTAB  ,    KC_SPC  ,        KC_NAVEN,    KC_SYM
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   ),
 
   [_SYMB] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-     KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,                          KC_6    ,KC_7    ,KC_8    ,KC_9    ,KC_0    ,
+     KC_EXLM ,KC_AT   ,KC_HASH ,KC_DLR  ,KC_PERC ,                          KC_CIRC ,KC_AMPR ,KC_ASTR ,KC_LPRN ,KC_RPRN ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_GRV  ,K_SNEK  ,KC_LBRC ,KC_RBRC ,KC_SCLN ,                          KC_MINS ,KC_PLUS ,KC_QUOT ,K_LT_OB ,KC_PIPE ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_TILDE,K_EURO  ,KC_LCBR ,KC_RCBR ,KC_COLN ,                          KC_UNDS ,KC_EQL  ,KC_DQT  ,K_LT_CB ,KC_BSLS ,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                     KC_TAB  ,    KC_SPC  ,        XXXXXXX ,    XXXXXXX
+                                     KC_TAB  ,    KC_BSPC ,        XXXXXXX ,    XXXXXXX
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   ),
 
-  [_QUICK] = LAYOUT(
+  [_NUMBER] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-     KGUI_TLD,XXXXXXX ,XXXXXXX ,KGUI_R  ,KGUI_T  ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,KC_1    ,KC_2    ,KC_3    ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_EXLM ,KC_AT   ,KC_HASH ,KC_DLR  ,KC_PERC ,                          KC_CIRC ,KC_AMPR ,KC_ASTR ,KC_LPRN ,KC_RPRN ,
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,KC_4    ,KC_5    ,KC_6    ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_ENT  ,KC_DELT ,KGUI_C  ,KGUI_V  ,KC_BSPC ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,KC_7    ,KC_8    ,KC_9    ,XXXXXXX ,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                     XXXXXXX ,    XXXXXXX ,        KC_ENT  ,    KC_BSPC
+                                     XXXXXXX ,    XXXXXXX ,        XXXXXXX ,    KC_0
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   ),
 
@@ -160,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,KC_MS_L ,KC_MS_D ,KC_MS_R ,KC_WH_D ,                          KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RIGHT,KC_MPLY ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,UC_MOD  ,                          KC_BRID ,KC_BRIU ,KC_VOLD ,KC_VOLU ,KC_MNXT ,
+     XXXXXXX ,KC_DELT ,XXXXXXX ,XXXXXXX ,UC_MOD  ,                          KC_BRID ,KC_BRIU ,KC_VOLD ,KC_VOLU ,KC_MNXT ,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      KC_BTN1 ,    KC_BTN2 ,        XXXXXXX ,    XXXXXXX
   //                                └────────┘   └────────┘       └────────┘   └────────┘
@@ -180,13 +172,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LTK] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,K_LT_S  ,K_LT_U1 ,K_LT_U2 ,K_LT_Z  ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     K_LT_A  ,K_LT_C  ,K_LT_E1 ,K_LT_E2 ,K_LT_I  ,                          K_LT_S  ,K_LT_U1 ,K_LT_U2 ,K_LT_Z  ,XXXXXXX ,
+     K_LT_A  ,K_LT_C  ,K_LT_E1 ,K_LT_E2 ,K_LT_I  ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                     XXXXXXX ,    KC_LSFT ,        XXXXXXX ,    XXXXXXX
+                                     KC_LSFT ,    XXXXXXX ,        XXXXXXX ,    XXXXXXX
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   )
 };
@@ -194,30 +186,55 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define TMUX_PREFIX SS_DOWN(X_LCTL) "b" SS_UP(X_LCTL)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!record->event.pressed) return true;
     switch (keycode) {
+        case SFTTAB: {
+            static uint8_t kc;
+
+            if (record->event.pressed) {
+                if ((get_mods() & MOD_MASK_GUI)
+                        || (get_mods() & MOD_MASK_ALT)
+                        || (get_mods() & MOD_MASK_CTRL)) {
+                    kc = KC_TAB;
+                } else {
+                    kc = KC_LSFT;
+                }
+
+                register_code(kc);
+            } else {
+                unregister_code(kc);
+            }
+            return false;
+        }
         case TM_LEFT:
+            if (!record->event.pressed) return true;
             SEND_STRING(TMUX_PREFIX "<");
             return false;
         case TM_RIGHT:
+            if (!record->event.pressed) return true;
             SEND_STRING(TMUX_PREFIX ">");
             return false;
         case TM_NEXT:
+            if (!record->event.pressed) return true;
             SEND_STRING(TMUX_PREFIX "n");
             return false;
         case TM_PREV:
+            if (!record->event.pressed) return true;
             SEND_STRING(TMUX_PREFIX "p");
             return false;
         case TM_NEW:
+            if (!record->event.pressed) return true;
             SEND_STRING(TMUX_PREFIX "c");
             return false;
         case TM_SLCT:
+            if (!record->event.pressed) return true;
             SEND_STRING(TMUX_PREFIX "[");
             return false;
         case TM_SRCH:
+            if (!record->event.pressed) return true;
             SEND_STRING(TMUX_PREFIX SS_DOWN(X_TAB) SS_UP(X_TAB));
             return false;
         case TM_URL:
+            if (!record->event.pressed) return true;
             SEND_STRING(TMUX_PREFIX SS_DOWN(X_LCTL) "u" SS_UP(X_LCTL));
             return false;
     }
