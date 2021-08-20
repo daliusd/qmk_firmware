@@ -40,7 +40,6 @@ enum custom_keycodes {
 #define HOME_J      MT(MOD_LALT, KC_J)
 #define HOME_K      MT(MOD_LCTL, KC_K)
 #define HOME_L      MT(MOD_LGUI, KC_L)
-#define HOME_A      MT(MOD_LSFT, KC_A)
 
 #define K_PRINT     (QK_LCTL | QK_LSFT | QK_LGUI | KC_4)
 
@@ -114,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
      KC_Q    ,KC_W    ,KC_E    ,KC_R    ,KC_TMUXT,                          KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P    ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_A    ,HOME_S  ,HOME_D  ,HOME_F  ,KC_G    ,                          KC_H    ,HOME_J  ,HOME_K  ,HOME_L  ,KC_ESC  ,
+     HOME_A  ,HOME_S  ,HOME_D  ,HOME_F  ,KC_G    ,                          KC_H    ,HOME_J  ,HOME_K  ,HOME_L  ,KC_ESC  ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_NO_B ,                          KC_LT_N ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH,
   //└────────┴────────┴────────┼────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
