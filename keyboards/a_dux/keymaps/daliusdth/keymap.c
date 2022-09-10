@@ -43,7 +43,7 @@ enum custom_keycodes {
 
 // Shortcut to make keymap more readable
 
-#define L_NAV       MO(_NAV)
+#define L_NAV_SP    LT(_NAV, KC_SPC)
 #define L_SYM       MO(_SYM)
 #define L_MS_M      LT(_MOUSE, KC_M)
 #define L_TMUX_B    LT(_TMUX, KC_B)
@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_Z    ,KC_X    ,KC_C    ,KC_V    ,L_TMUX_B,                          L_FUNC_N,L_MS_M  ,L_LT_COM,L_MISC_D,KC_SLSH,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                     L_NAV   ,    KC_SPC  ,        KC_LSFT ,    L_SYM
+                                     L_NAV_SP,    KC_TAB  ,        KC_LSFT ,    L_SYM
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   ),
 
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
      KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,                          KC_6    ,KC_7    ,KC_8    ,KC_9    ,KC_0    ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_TAB  ,KC_LGUI ,KC_LCTL ,KC_LALT, KC_ENT  ,                          KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RIGHT,XXXXXXX ,
+     XXXXXXX ,KC_LGUI ,KC_LCTL ,KC_LALT, KC_ENT  ,                          KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RIGHT,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_LSFT ,KC_BSPC ,KC_ESC  ,KC_TILDE,XXXXXXX ,                          XXXXXXX ,KC_DEL  ,KC_COMM ,KC_DOT  ,XXXXXXX ,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
