@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_FORCE_HOLD_PER_KEY
 
 #define MOUSEKEY_INTERVAL 12
 #define MOUSEKEY_MAX_SPEED 6
