@@ -47,6 +47,8 @@ uint16_t timer_ended = 0;
 uint8_t  code_length = 0;
 uint16_t code = 0;
 
+uint8_t modifiers = 0;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     if (record->event.pressed) {
@@ -189,6 +191,10 @@ void process_5(void) {
         case 0b01000:
             tap_code16(KC_AMPR);
             break;
+        case 0b01100:
+            // WI - win key
+            modifiers |= 0b001;
+            break;
         case 0b01111:
             tap_code16(KC_1);
             break;
@@ -197,6 +203,10 @@ void process_5(void) {
             break;
         case 0b10010:
             tap_code16(KC_SLSH);
+            break;
+        case 0b10101:
+            // CT - ctrl
+            modifiers |= 0b010;
             break;
         case 0b10110:
             tap_code16(KC_LPRN);
@@ -227,6 +237,10 @@ void process_6(void) {
             break;
         case 0b010010:
             tap_code16(KC_DQT);
+            break;
+        case 0b010100:
+            // AL - Alt
+            modifiers |= 0b100;
             break;
         case 0b010101:
             tap_code16(KC_DOT);
@@ -265,6 +279,20 @@ void process_9(void) {
 
 void matrix_scan_user(void) {
     if (timer_started == 0 && timer_ended != 0 && timer_elapsed(timer_ended) > DIT_DURATION * 3) {
+
+        // handle modifiers (register)
+        uint8_t old_modifiers = modifiers;
+        if ((modifiers & 0b001) == 0b001) {
+            register_code(KC_LGUI);
+        }
+        if ((modifiers & 0b010) == 0b010) {
+            register_code(KC_LCTL);
+        }
+        if ((modifiers & 0b100) == 0b100) {
+            register_code(KC_LALT);
+        }
+
+        // pressed key
         switch (code_length) {
             case 1:
                 process_1();
@@ -287,6 +315,20 @@ void matrix_scan_user(void) {
             case 9:
                 process_9();
                 break;
+        }
+
+        // handle modifiers (unregister). Unregister all modifiers if non modifier key is pressed
+        if (old_modifiers == modifiers) {
+            if ((modifiers & 0b001) == 0b001) {
+                unregister_code(KC_LGUI);
+            }
+            if ((modifiers & 0b010) == 0b010) {
+                unregister_code(KC_LCTL);
+            }
+            if ((modifiers & 0b100) == 0b100) {
+                unregister_code(KC_LALT);
+            }
+            modifiers = 0;
         }
 
         timer_ended = 0;
