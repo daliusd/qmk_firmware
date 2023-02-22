@@ -294,7 +294,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case TM_SRCH:
             if (!record->event.pressed) return true;
-            SEND_STRING(TMUX_PREFIX "\t");
+            SEND_STRING(TMUX_PREFIX "/");
             return false;
         case TM_URL:
             if (!record->event.pressed) return true;
