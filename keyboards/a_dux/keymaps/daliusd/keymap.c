@@ -26,7 +26,6 @@ enum layers {
     _SYM,
     _NAV,
     _MISC,
-    _TMUX,
     _MOUSE,
     _FUNC,
     _LT_MAC,
@@ -34,16 +33,7 @@ enum layers {
 };
 
 enum custom_keycodes {
-  TM_NEXT = SAFE_RANGE,
-  TM_PREV,
-  TM_LEFT,
-  TM_RIGHT,
-  TM_NEW,
-  TM_SLCT,
-  TM_SRCH,
-  TM_URL,
-  OS_MISC,
-  OS_TMUX,
+  OS_MISC = SAFE_RANGE,
   OS_FUNC,
   LT_OSLNX,
 };
@@ -71,7 +61,6 @@ const uint16_t flow_config[FLOW_COUNT][2] = {
 
 const uint16_t flow_layers_config[FLOW_LAYERS_COUNT][2] = {
     {OS_MISC, _MISC},
-    {OS_TMUX, _TMUX},
     {OS_FUNC, _FUNC},
 };
 
@@ -181,7 +170,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_LALT ,KC_LGUI ,KC_LCTL ,KC_TAB  ,KC_ENT  ,                          KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RIGHT,KC_PGUP ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT ,KC_BSPC ,KC_ESC  ,KC_TILDE,OS_TMUX ,                          OS_FUNC ,L_MOUSE ,KC_COMM ,KC_DOT  ,KC_PGDN ,
+     KC_LSFT ,KC_BSPC ,KC_ESC  ,KC_TILDE,XXXXXXX ,                          OS_FUNC ,L_MOUSE ,KC_COMM ,KC_DOT  ,KC_PGDN ,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      XXXXXXX ,    _______ ,        _______ ,    _______
   //                                └────────┘   └────────┘       └────────┘   └────────┘
@@ -194,18 +183,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      XXXXXXX ,XXXXXXX ,DB_TOGG ,LT_OSLNX,XXXXXXX ,                          KC_MPRV ,KC_MPLY ,KC_MNXT ,XXXXXXX ,K_VIDEO ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          KC_VOLD ,KC_VOLU ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
-  //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                     XXXXXXX ,    XXXXXXX ,        XXXXXXX ,    XXXXXXX
-  //                                └────────┘   └────────┘       └────────┘   └────────┘
-  ),
-
-  [_TMUX] = LAYOUT(
-  //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,TM_URL  ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
-  //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          TM_LEFT ,TM_NEXT ,TM_PREV ,TM_RIGHT,XXXXXXX ,
-  //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          TM_NEW  ,TM_SLCT ,XXXXXXX ,XXXXXXX ,TM_SRCH ,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      XXXXXXX ,    XXXXXXX ,        XXXXXXX ,    XXXXXXX
   //                                └────────┘   └────────┘       └────────┘   └────────┘
@@ -260,46 +237,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-#define TMUX_PREFIX SS_DOWN(X_LCTL) "b" SS_UP(X_LCTL)
-
 bool lt_os_is_linux = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!update_flow(keycode, record->event.pressed, record->event.key)) return false;
 
     switch (keycode) {
-        case TM_LEFT:
-            if (!record->event.pressed) return true;
-            SEND_STRING(TMUX_PREFIX "<");
-            return false;
-        case TM_RIGHT:
-            if (!record->event.pressed) return true;
-            SEND_STRING(TMUX_PREFIX ">");
-            return false;
-        case TM_NEXT:
-            if (!record->event.pressed) return true;
-            SEND_STRING(TMUX_PREFIX "n");
-            return false;
-        case TM_PREV:
-            if (!record->event.pressed) return true;
-            SEND_STRING(TMUX_PREFIX "p");
-            return false;
-        case TM_NEW:
-            if (!record->event.pressed) return true;
-            SEND_STRING(TMUX_PREFIX "c");
-            return false;
-        case TM_SLCT:
-            if (!record->event.pressed) return true;
-            SEND_STRING(TMUX_PREFIX "[");
-            return false;
-        case TM_SRCH:
-            if (!record->event.pressed) return true;
-            SEND_STRING(TMUX_PREFIX "\t");
-            return false;
-        case TM_URL:
-            if (!record->event.pressed) return true;
-            SEND_STRING(TMUX_PREFIX SS_LCTL("u"));
-            return false;
         case LT_OSLNX:
             if (!record->event.pressed) return true;
             lt_os_is_linux = !lt_os_is_linux;
