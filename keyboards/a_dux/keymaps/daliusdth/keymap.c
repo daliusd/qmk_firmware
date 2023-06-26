@@ -46,7 +46,7 @@ enum custom_keycodes {
 #define NAV_TAB     LT(_NAV, KC_TAB)
 #define SYM_BSCP    LT(_SYM, KC_BSPC)
 #define FUN_SLSH    LT(_FUNC, KC_SLSH)
-#define MOUSE_M     LT(_MOUSE, KC_M)
+#define MOUSE_SC    LT(_MOUSE, KC_SCLN)
 #define MISC_DOT    LT(_MISC, KC_DOT)
 
 #define K_PRINT     (QK_LCTL | QK_LSFT | QK_LGUI | KC_4)
@@ -133,9 +133,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
      KC_Q    ,KC_W    ,KC_E    ,KC_R    ,KC_T,                              KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P    ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_A    ,GUI_S   ,CTRL_D  ,ALT_F   ,KC_G    ,                          KC_H    ,ALT_J   ,CTRL_K  ,GUI_L   ,KC_SCLN ,
+     KC_A    ,GUI_S   ,CTRL_D  ,ALT_F   ,KC_G    ,                          KC_H    ,ALT_J   ,CTRL_K  ,GUI_L   ,MOUSE_SC,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,                          KC_N    ,MOUSE_M ,KC_COMM ,MISC_DOT,FUN_SLSH,
+     KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,                          KC_N    ,KC_M    ,KC_COMM ,MISC_DOT,FUN_SLSH,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      NAV_TAB ,    KC_SPC  ,        KC_LSFT ,    SYM_BSCP
   //                                └────────┘   └────────┘       └────────┘   └────────┘
