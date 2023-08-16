@@ -226,8 +226,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-#define TMUX_PREFIX SS_DOWN(X_LCTL) "b" SS_UP(X_LCTL)
-
 bool lt_os_is_linux = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
