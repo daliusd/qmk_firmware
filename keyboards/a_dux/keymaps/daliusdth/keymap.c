@@ -43,7 +43,7 @@ enum custom_keycodes {
 #define CTRL_K      LCTL_T(KC_K)
 #define GUI_L       LGUI_T(KC_L)
 
-#define NAV_TAB     LT(_NAV, KC_TAB)
+#define NAV         MO(_NAV)
 #define SYM         MO(_SYM)
 #define FUN_SLSH    LT(_FUNC, KC_SLSH)
 #define MOUSE_SC    LT(_MOUSE, KC_SCLN)
@@ -137,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,                          KC_N    ,KC_M    ,KC_COMM ,MISC_DOT,FUN_SLSH,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                     NAV_TAB ,    KC_SPC  ,        KC_LSFT ,    SYM
+                                     NAV     ,    KC_SPC  ,        KC_LSFT ,    SYM
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   ),
 
@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
      KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,                          KC_6    ,KC_7    ,KC_8    ,KC_9    ,KC_0    ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_LGUI ,KC_LGUI ,KC_LCTL ,KC_LALT ,KC_ENT  ,                          KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RIGHT,KC_PGUP ,
+     KC_TAB  ,KC_LGUI ,KC_LCTL ,KC_LALT ,KC_ENT  ,                          KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RIGHT,KC_PGUP ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_LSFT ,KC_BSPC ,KC_ESC  ,KC_TILDE,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,KC_COMM ,KC_DOT  ,KC_PGDN ,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
@@ -171,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      XXXXXXX ,XXXXXXX ,DB_TOGG ,LT_OSLNX,XXXXXXX ,                          KC_MPRV ,KC_MPLY ,KC_MNXT ,XXXXXXX ,K_VIDEO ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,DT_DOWN ,DT_UP   ,XXXXXXX ,XXXXXXX ,                          KC_VOLD ,KC_VOLU ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          KC_VOLD ,KC_VOLU ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      XXXXXXX ,    XXXXXXX ,        XXXXXXX ,    XXXXXXX
   //                                └────────┘   └────────┘       └────────┘   └────────┘
@@ -257,13 +257,4 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     }
 
     return state;
-}
-
-uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case NAV_TAB:
-            return 0;
-        default:
-            return QUICK_TAP_TERM;
-    }
 }
