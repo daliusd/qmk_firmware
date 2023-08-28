@@ -1,5 +1,8 @@
 UNICODE_ENABLE = no
 UNICODEMAP_ENABLE = yes
 #CONSOLE_ENABLE = yes
+POINTING_DEVICE_ENABLE = yes
+#POINTING_DEVICE_DRIVER = analog_joystick
+POINTING_DEVICE_DRIVER = analog_joystick_barrett
 
 SRC += flow.c

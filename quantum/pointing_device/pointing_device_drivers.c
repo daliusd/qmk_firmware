@@ -115,6 +115,29 @@ const pointing_device_driver_t pointing_device_driver = {
 };
 // clang-format on
 
+#elif defined(POINTING_DEVICE_DRIVER_analog_joystick_barrett)
+report_mouse_t analog_joystick_barrett_get_report(report_mouse_t mouse_report) {
+    report_analog_joystick_t data = analog_joystick_barrett_read();
+
+    pd_dprintf("Raw ] X: %d, Y: %d\n", data.x, data.y);
+
+    mouse_report.x = data.x;
+    mouse_report.y = data.y;
+
+    mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, data.button, POINTING_DEVICE_BUTTON1);
+
+    return mouse_report;
+}
+
+// clang-format off
+const pointing_device_driver_t pointing_device_driver = {
+    .init       = analog_joystick_barrett_init,
+    .get_report = analog_joystick_barrett_get_report,
+    .set_cpi    = NULL,
+    .get_cpi    = NULL
+};
+// clang-format on
+
 #elif defined(POINTING_DEVICE_DRIVER_cirque_pinnacle_i2c) || defined(POINTING_DEVICE_DRIVER_cirque_pinnacle_spi)
 #    ifdef POINTING_DEVICE_GESTURES_CURSOR_GLIDE_ENABLE
 static bool cursor_glide_enable = true;
