@@ -19,17 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define UNICODE_SELECTED_MODES UNICODE_MODE_LINUX
 
-#define MOUSEKEY_INTERVAL 12
-#define MOUSEKEY_MAX_SPEED 6
+#define MK_COMBINED
+#define MOUSEKEY_INTERVAL 16
+#define MOUSEKEY_MAX_SPEED 4
 #define MOUSEKEY_TIME_TO_MAX 50
 
-#define MOUSEKEY_DELAY 20
-// It makes sense to use the same delay for the mouseweel
-#define MOUSEKEY_WHEEL_DELAY 100
-// The default is 100
-#define MOUSEKEY_WHEEL_INTERVAL 50
-// The default is 40
-#define MOUSEKEY_WHEEL_TIME_TO_MAX 100
 
 #define FLOW_COUNT 6
 #define FLOW_LAYERS_COUNT 2
