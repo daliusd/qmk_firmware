@@ -26,8 +26,9 @@ uint16_t minAxisValue = ANALOG_JOYSTICK_AXIS_MIN;
 uint16_t maxAxisValue = ANALOG_JOYSTICK_AXIS_MAX;
 
 uint8_t maxCursorSpeed = ANALOG_JOYSTICK_SPEED_MAX;
-int16_t speedRegulator = 20; // ANALOG_JOYSTICK_SPEED_REGULATOR; // Lower Values Create Faster Movement
-int16_t stepsToMax = 20;
+int16_t speedRegulator = 10; // ANALOG_JOYSTICK_SPEED_REGULATOR; // Lower Values Create Faster Movement
+
+int8_t leverWeights[] = {0,2,4,5,7,8,9,10,12,13,14,15,15,16,17,18,18,19,19,20,20,21,21,21,22,22,22,22,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,25,25,25,26,26,26,27,28,28,29,29,30,31,32,33,34,35,36,37,38,40,41,43,44,46,48,49,51,53,56,58,60,62,65,68,70,73,76,79,82,85,89,92,96,100};
 
 int16_t xOrigin, yOrigin;
 
@@ -44,9 +45,6 @@ int16_t axisCoordinate(pin_t pin, uint16_t origin) {
     return coordinate > 100 ? 100 : coordinate < -100 ? -100 : coordinate;
 }
 
-float xC = 0;
-float yC = 0;
-
 report_analog_joystick_t analog_joystick_barrett_read(void) {
     report_analog_joystick_t report = {0};
 
@@ -54,27 +52,10 @@ report_analog_joystick_t analog_joystick_barrett_read(void) {
         lastCursor = timer_read();
 
         int16_t x = axisCoordinate(ANALOG_JOYSTICK_X_AXIS_PIN, xOrigin);
-        if (abs(x) < 5) {
-            xC = 0;
-        } else {
-            float maxX = (float)x / 100 * abs(x) * maxCursorSpeed / speedRegulator;
-            if (abs(xC) < abs(maxX)) {
-                xC += maxX / stepsToMax;
-            } else {
-                xC = maxX;
-            }
-        }
         int16_t y = axisCoordinate(ANALOG_JOYSTICK_Y_AXIS_PIN, yOrigin);
-        if (abs(y) < 5) {
-            yC = 0;
-        } else {
-            float maxY = (float)y / 100 * abs(y) * maxCursorSpeed / speedRegulator;
-            if (abs(yC) < abs(maxY)) {
-                yC += maxY / stepsToMax;
-            } else {
-                yC = maxY;
-            }
-        }
+
+        int16_t xC = leverWeights[abs(x)] * (x < 0 ? -1 : 1) * maxCursorSpeed / speedRegulator;
+        int16_t yC = leverWeights[abs(y)] * (y < 0 ? -1 : 1) * maxCursorSpeed / speedRegulator;
 
         report.x   = (int8_t)xC;
         report.y   = (int8_t)yC;
