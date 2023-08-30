@@ -38,4 +38,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ANALOG_JOYSTICK_Y_AXIS_PIN F1
 
 #define ANALOG_JOYSTICK_CLICK_PIN D5
-#define ANALOG_JOYSTICK_SPEED_MAX 2
