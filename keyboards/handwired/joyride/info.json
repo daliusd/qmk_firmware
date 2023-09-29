@@ -21,10 +21,10 @@
     },
     "matrix_pins": {
         "direct": [
-            ["GP0", "GP1", "GP2", "GP3", "GP4"],
-            ["GP5", "GP6", "GP7", "GP8", "GP9"],
-            ["GP10", "GP11", "GP12", "GP13", "GP14"],
-            ["GP15", "GP26", null, null, null]
+            ["GP13", "GP14", "GP15", "GP28", "GP29"],
+            ["GP8", "GP9", "GP10", "GP11", "GP12"],
+            ["GP3", "GP4", "GP5", "GP6", "GP7"],
+            ["GP1", "GP2", null, null, null]
         ]
     },
     "split": {
@@ -32,10 +32,10 @@
         "matrix_pins": {
             "right": {
                 "direct": [
-                    ["GP0", "GP1", "GP2", "GP3", "GP4"],
-                    ["GP5", "GP6", "GP7", "GP8", "GP9"],
-                    ["GP10", "GP11", "GP12", "GP13", "GP14"],
-                    ["GP15", "GP26", null, null, null]
+                    ["GP1", "GP2", "GP3", "GP4", "GP5"],
+                    ["GP6", "GP7", "GP8", "GP9", "GP10"],
+                    ["GP11", "GP12", "GP13", "GP14", "GP15"],
+                    ["GP28", "GP29", null, null, null]
                 ]
             }
         }
