@@ -239,6 +239,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool lt_os_is_linux = false;
 
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    if (layer_state_is(_NAV)) {
+        mouse_report.h = mouse_report.x;
+        mouse_report.v = mouse_report.y;
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    }
+    return mouse_report;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!update_flow(keycode, record->event.pressed, record->event.key)) return false;
 
