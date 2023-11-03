@@ -240,8 +240,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool lt_os_is_linux = false;
 
 // Modify these values to adjust the scrolling speed
-#define SCROLL_DIVISOR_H 12.0
-#define SCROLL_DIVISOR_V 12.0
+#define SCROLL_DIVISOR_H 20.0
+#define SCROLL_DIVISOR_V 20.0
 
 // Variables to store accumulated scroll values
 float scroll_accumulated_h = 0;
