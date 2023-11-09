@@ -95,8 +95,6 @@ int8_t axisToMouseComponent(pin_t pin, int16_t origin, uint8_t maxSpeed, uint8_t
     if (coordinate != 0) {
         float percent = (float)coordinate / 100;
         result = percent * maxCursorSpeed * (abs(coordinate) / speedRegulator);
-
-
     } else {
         return 0;
     }
@@ -107,7 +105,7 @@ int8_t axisToMouseComponent(pin_t pin, int16_t origin, uint8_t maxSpeed, uint8_t
 #ifdef ANALOG_JOYSTICK_CUTOFF
     uint8_t pv = prevValues[axis];
     prevValues[axis] = abs(result);
-    if (pv < abs(result)) {
+    if (pv > abs(result)) {
         return 0;
     }
 #endif
