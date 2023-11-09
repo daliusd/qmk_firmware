@@ -8,8 +8,6 @@
 #define SERIAL_USART_TX_PIN GP0
 #define SERIAL_PIO_USE_PIO1 // Force the usage of PIO1 peripheral, by default the Serial implementation uses the PIO0 peripheral
 
-#define ANALOG_JOYSTICK_SPEED_REGULATOR 15
-
 #define ANALOG_JOYSTICK_X_AXIS_PIN GP26
 #define ANALOG_JOYSTICK_Y_AXIS_PIN GP27
 
