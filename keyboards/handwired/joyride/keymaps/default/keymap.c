@@ -36,6 +36,7 @@ enum custom_keycodes {
   OS_MISC = SAFE_RANGE,
   OS_FUNC,
   LT_OSLNX,
+  SCROLL,
 };
 
 // Shortcut to make keymap more readable
@@ -192,9 +193,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
      XXXXXXX ,XXXXXXX ,KC_MS_U ,XXXXXXX ,KC_WH_U ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,KC_MS_L ,KC_MS_D ,KC_MS_R ,KC_WH_D ,                          XXXXXXX ,XXXXXXX ,KC_RCTL ,KC_RGUI ,KC_RALT ,
+     XXXXXXX ,KC_MS_L ,KC_MS_D ,KC_MS_R ,KC_WH_D ,                          XXXXXXX ,XXXXXXX ,KC_RCTL ,KC_RGUI ,KC_LALT ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,KC_ACL1 ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,SCROLL  ,XXXXXXX ,XXXXXXX ,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      KC_BTN1 ,    KC_BTN2 ,        _______ ,    XXXXXXX
   //                                └────────┘   └────────┘       └────────┘   └────────┘
@@ -204,7 +205,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
      KC_F1   ,KC_F2   ,KC_F3   ,KC_F4   ,KC_F5   ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     KC_F6   ,KC_F7   ,KC_F8   ,KC_F9   ,KC_F10  ,                          XXXXXXX ,XXXXXXX ,KC_RCTL ,KC_RGUI ,KC_RALT ,
+     KC_F6   ,KC_F7   ,KC_F8   ,KC_F9   ,KC_F10  ,                          XXXXXXX ,XXXXXXX ,KC_RCTL ,KC_RGUI ,KC_LALT ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_F11  ,KC_F12  ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
@@ -238,6 +239,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool lt_os_is_linux = false;
+bool should_scroll = false;
 
 // Modify these values to adjust the scrolling speed
 #define SCROLL_DIVISOR_H 20.0
@@ -248,7 +250,7 @@ float scroll_accumulated_h = 0;
 float scroll_accumulated_v = 0;
 
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    if (layer_state_is(_NAV)) {
+    if (layer_state_is(_NAV) || should_scroll) {
         // Calculate and accumulate scroll values based on mouse movement and divisors
         scroll_accumulated_h += (float)mouse_report.x / SCROLL_DIVISOR_H;
         scroll_accumulated_v += (float)mouse_report.y / SCROLL_DIVISOR_V;
@@ -275,6 +277,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case LT_OSLNX:
             if (!record->event.pressed) return true;
             lt_os_is_linux = !lt_os_is_linux;
+            return false;
+        case SCROLL:
+            should_scroll = record->event.pressed;
             return false;
     }
     return true;
