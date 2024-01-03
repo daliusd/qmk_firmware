@@ -250,7 +250,7 @@ float scroll_accumulated_h = 0;
 float scroll_accumulated_v = 0;
 
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    if (layer_state_is(_NAV) || should_scroll) {
+    if (layer_state_is(_SYM) || should_scroll) {
         // Calculate and accumulate scroll values based on mouse movement and divisors
         scroll_accumulated_h += (float)mouse_report.x / SCROLL_DIVISOR_H;
         scroll_accumulated_v += (float)mouse_report.y / SCROLL_DIVISOR_V;
